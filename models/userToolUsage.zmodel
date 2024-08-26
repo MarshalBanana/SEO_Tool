@@ -1,0 +1,19 @@
+
+ import "./user.zmodel"  
+ import "./tool.zmodel"  
+
+model UserToolUsage {
+
+    id                String        @id @default(uuid())  
+    usageTimestamp  String?          
+    parameters  String?          
+    results      String?          
+
+userId        String          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+    toolId        String          
+    tool            Tool?            @relation(fields: [toolId], references: [id], name:"tool")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

@@ -1,0 +1,19 @@
+
+ import "./userToolUsage.zmodel"  
+ import "./feedback.zmodel"  
+ import "./analytics.zmodel"  
+
+model Tool {
+
+    id                String        @id @default(uuid())  
+    name            String          
+    description  String?          
+    route          String?          
+
+userToolUsages  UserToolUsage[]  @relation("tool")  
+    feedbacks  Feedback[]  @relation("tool")  
+    analyticss  Analytics[]  @relation("tool")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}

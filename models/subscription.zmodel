@@ -1,0 +1,19 @@
+
+ import "./user.zmodel"  
+ import "./organization.zmodel"  
+
+model Subscription {
+
+    id                String        @id @default(uuid())  
+    plan            String?          
+    startDate  String?          
+    endDate      String?          
+
+userId        String          
+    user            User?            @relation(fields: [userId], references: [id], name:"user")  
+    organizationId  String          
+    organization  Organization?  @relation(fields: [organizationId], references: [id], name:"organization")  
+      dateCreated DateTime @default(now())
+      dateUpdated DateTime @updatedAt  @default(now())
+      @@allow("all", true)
+}
